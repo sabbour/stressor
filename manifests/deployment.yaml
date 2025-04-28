@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stressor-app
+spec:
+  selector:
+    matchLabels:
+      app: stressor-app
+  template:
+    metadata:
+      labels:
+        app: stressor-app
+    spec:
+      containers:
+      - name: stressor
+        image: stressor-app:latest
+        env:
+        - name: HIGH_STRESS_DURATION
+          value: "300"
+        - name: LOW_STRESS_DURATION
+          value: "120"
+        - name: RAMP_STEPS
+          value: "10"
+        - name: RAMP_UP_DURATION
+          value: "20"
+        - name: RAMP_DOWN_DURATION
+          value: "20"
+        - name: LOW_PHASE_PERCENT
+          value: "0.1"
+        - name: MAX_CPU_CORES
+          value: "1"
+        - name: MAX_MEMORY_MB
+          value: "256"
+        - name: STARTUP_RANDOM_DELAY_MAX_SEC
+          value: "30"
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "500m"
+          limits:
+            memory: "64Mi"
+            cpu: "500m"

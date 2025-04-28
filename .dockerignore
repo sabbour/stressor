@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.log
+.env
+.git
+.gitignore
+Dockerfile
+README.md
+manifests/
