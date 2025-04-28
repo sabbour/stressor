@@ -16,9 +16,9 @@ spec:
         image: ghcr.io/sabbour/stressor:main
         env:
         - name: HIGH_STRESS_DURATION
-          value: "300"
-        - name: LOW_STRESS_DURATION
           value: "120"
+        - name: LOW_STRESS_DURATION
+          value: "300"
         - name: RAMP_STEPS
           value: "10"
         - name: RAMP_UP_DURATION
