@@ -7,12 +7,29 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: stressor-app
-  minReplicas: 1
-  maxReplicas: 5
+  minReplicas: 2
+  maxReplicas: 50
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 70
+        averageUtilization: 60
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 30  # Reduced window (default is 300s)
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+      - type: Pods
+        value: 4
+        periodSeconds: 15
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 60  # Reduced window (default is 300s)
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15

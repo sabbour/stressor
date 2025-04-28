@@ -29,10 +29,11 @@ A Python-based utility for stress testing CPU and memory usage in a configurable
    docker run --rm -it \
      -e HIGH_STRESS_DURATION=120 \
      -e LOW_STRESS_DURATION=300 \
-     -e MAX_CPU_CORES=2 \
-     -e MAX_MEMORY_MB=512 \
-     -e RAMP_STEPS=5 \
+     -e MAX_CPU_CORES=1 \
+     -e MAX_MEMORY_MB=1024 \
+     -e RAMP_STEPS=10 \
      -e LOW_PHASE_PERCENT=0.2 \
+     -e STARTUP_RANDOM_DELAY_MAX_SEC=10 \
      stress-test-app
    ```
 
@@ -65,7 +66,7 @@ spec:
     spec:
       containers:
       - name: stress-test-app
-        image: ghcr.io/sabbour/stressor:main
+        image: ghcr.io/sabbour/stressor:latest
         env:
         - name: HIGH_STRESS_DURATION
           value: "120"
@@ -84,7 +85,7 @@ spec:
         - name: MAX_MEMORY_MB
           value: "1024"
         - name: STARTUP_RANDOM_DELAY_MAX_SEC
-          value: "30"
+          value: "10"
         resources:
           limits:
             cpu: "2"
