@@ -65,7 +65,7 @@ spec:
     spec:
       containers:
       - name: stress-test-app
-        image: stress-test-app:latest
+        image: ghcr.io/sabbour/stressor:main
         env:
         - name: HIGH_STRESS_DURATION
           value: "120"
